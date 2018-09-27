@@ -16,7 +16,7 @@ function getQuestion(){
     .then((conditions)=>{
         // questionField.textContent = question;
         
-        return conditions.question
+        questionField.textContent = conditions.question;
     })
     .then((question)=>{
         console.log(question)
