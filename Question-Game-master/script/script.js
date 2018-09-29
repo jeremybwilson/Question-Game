@@ -1,6 +1,6 @@
 const questionField = document.getElementById("question");
 const start = document.getElementById("start-game");
-let questionRes = [];
+let questionRes = {};
 
 function getQuestion(){
     axios.get("https://opentdb.com/api.php?amount=1&type=boolean")
@@ -15,14 +15,8 @@ function getQuestion(){
     })
     .then((conditions)=>{
         // questionField.textContent = question;
-        console.log(conditions);
-        questionRes.push({
-            'question': conditions.question
-        })
+        questionRes = conditions;
         questionField.innerHTML = conditions.question;
-    })
-    .then((question)=>{
-        console.log(question)
     })
     .catch((err)=>{
         console.log(err)
@@ -36,7 +30,8 @@ function getQuestion(){
 
 start.onclick = function(){
     getQuestion();
-    if(questionRes){
-        console.log(questionRes);
-    }
+}
+
+questionField.onclick = function(){
+    console.log(questionField.textContent)
 }
