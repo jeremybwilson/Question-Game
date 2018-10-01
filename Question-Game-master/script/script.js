@@ -4,7 +4,8 @@ const questionField = document.getElementById("question"),
       btnTrue = document.querySelector("#true"),
       btnFalse = document.querySelector("#false"),
       url = "https://opentdb.com/api.php?amount=1&type=boolean",
-      btnAnswers = document.getElementsByClassName('btn_answer');
+      btnAnswers = document.getElementsByClassName('btn_answer'),
+      isActive = true;
 
 
 let questionRes = {};
@@ -58,14 +59,29 @@ start.onclick = function(){
 // create logic of game
 // we need to take userAnswer, and check, if user answer === answer
 
+
+
 btnTrue.onclick = () => {
-    checkCorrect();
+    if(checkCorrect()){
+        btnTrue.innerHTML = '<i class="far fa-smile"></i> True';
+    } else {
+        btnTrue.innerHTML = '<i class="far fa-angry"></i> True';
+    }
     btnTrue.classList.add('userChoice');
+    
+    
+    
 }
 
 btnFalse.onclick = () => {
-    checkCorrect();
+    if(!checkCorrect()){
+        btnFalse.innerHTML = '<i class="far fa-smile"></i> False';
+    } else {
+        btnFalse.innerHTML = '<i class="far fa-angry"></i> False';    
+    }
+
     btnFalse.classList.add('userChoice');
+    
 }
 
 // Logic functions
@@ -75,9 +91,11 @@ checkCorrect = () => {
     if(questionRes.correct === "True"){
         btnTrue.classList.add('correct');
         btnFalse.classList.add('incorrect');
+        return true;
     } else {
         btnTrue.classList.add('incorrect');
         btnFalse.classList.add('correct');
+        return false;
     }
 }
 
@@ -88,8 +106,10 @@ resetClasses = () => {
     btnTrue.classList.remove('correct');
     btnTrue.classList.remove('incorrect');
     btnTrue.classList.remove('userChoice');
+    btnTrue.textContent = "True";
 
     btnFalse.classList.remove('correct');
     btnFalse.classList.remove('incorrect');
     btnFalse.classList.remove('userChoice');
+    btnFalse.innerHTML = "False";
 }
