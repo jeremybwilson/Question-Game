@@ -34,6 +34,7 @@ function getQuestion(){
         // add answers in questionRes variable 
         questionRes.correct = conditions.correct_answer;
         questionRes.incorrect = conditions.incorrect_answers[0];
+        start.textContent = "Next question";
 
         // console.log(conditions.correct_answer);
         // console.log(conditions.incorrect_answers[0]);
@@ -41,7 +42,7 @@ function getQuestion(){
 
     })
     .catch((err)=>{
-        questionField.innerHTML = "Something gone wrong, try again!";
+        questionField.innerHTML = "Server doesn't answer, try again!";
     })
 }
 
@@ -52,7 +53,6 @@ function getQuestion(){
 // use getQuestion wile press btn start
 start.onclick = function(){
     getQuestion();
-    start.textContent = "Next question";
     resetClasses();    
 }
 
