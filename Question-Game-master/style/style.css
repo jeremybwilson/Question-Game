@@ -127,3 +127,7 @@ html {
     background-color: #FB3131;
     color: #F3EED9;
 }
+
+.userChoice {
+    border: 1px solid black;
+}
